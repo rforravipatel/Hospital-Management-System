@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<include file="struts-default.xml" />
+	<package name="a" extends="struts-default">
+
+		<interceptors>
+			<interceptor name="authenticationInterceptor" class="com.HMS.Util.AuthenticationInterceptor"></interceptor>
+			<interceptor-stack name="secureStack">
+				<interceptor-ref name="authenticationInterceptor"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		
+		<action name="verify" class="com.HMS.controller.LoginController" method="showLogin">
+			<result name="success">/index.jsp</result>
+		</action>
+		<action name="*Link" class="com.HMS.Util.Links"
+			method="{1}">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+			<result name="RegisterAdmin">/adminRegisteration.jsp</result>
+			<result name="patient">/patient.jsp</result>
+			<result name="doctor">/doctor.jsp</result>
+			<result name="billing">/billing.jsp</result>
+			<result name="labReports">/labReports.jsp</result>
+			<result name="roomHistory">/roomHistory.jsp</result>
+			<result name="login">/index.jsp</result>
+			
+		</action>
+		
+		<action name="adminRegister" class="com.HMS.controller.RegisterController" method="registerAdmin">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+			<result name="success">/index.jsp</result>
+			<result name="input">/adminRegisteration.jsp</result>
+			<result name="error">/adminRegisteration.jsp</result>
+			
+		</action>
+		
+		<action name="login" class="com.HMS.controller.LoginController" method="loginValidate">
+			<result name="success">/adminDashboard.jsp</result>
+			<result name="error">/index.jsp</result>
+			<result name="input">/index.jsp</result>
+			<result name="login">/index.jsp</result>
+		</action>
+		
+		<action name="patientRegisteration" class="com.HMS.controller.RegisterController" method="patientRegister">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+			<result name="success">/adminDashboard.jsp</result>
+			<result name="input">/adminRegisteration.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="logout" class="com.HMS.controller.LoginController" method="logout">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+			<result name="success">/index.jsp</result>
+			<result name="login">/index.jsp</result>
+		</action>
+		
+	</package>
+</struts>
