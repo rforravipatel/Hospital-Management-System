@@ -10,7 +10,7 @@ import com.HMS.model.Admin;
 import com.HMS.service.LoginService;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class LoginController extends ActionSupport implements SessionAware{
+public class LoginController extends ActionSupport implements SessionAware {
 
 	/**
 	 * 
@@ -19,40 +19,34 @@ public class LoginController extends ActionSupport implements SessionAware{
 	private Admin admin;
 	LoginService loginService = new LoginService();
 	private SessionMap<String, Object> sessionMap;
-	
-	
+
 	public Admin getAdmin() {
 		return admin;
 	}
-
-
 
 	public void setAdmin(Admin admin) {
 		this.admin = admin;
 	}
 
-
 	@Override
 	public void setSession(Map<String, Object> session) {
-		sessionMap = (SessionMap<String, Object>)session;
+		sessionMap = (SessionMap<String, Object>) session;
 	}
 
 	public String loginValidate() {
-		
-		Admin admincheck = (Admin)sessionMap.get("Admin");
-		if(admincheck != null) {
-			System.out.println("In null check");
+
+		Admin admincheck = (Admin) sessionMap.get("Admin");
+		if (admincheck != null) {
 			return SUCCESS;
-		}else {
-			if(loginService.checkUser(admin)) {
-				System.out.println("In checkUser");
+		} else {
+			if (loginService.checkUser(admin)) {
 				sessionMap.put("Admin", admin);
 				return SUCCESS;
-			}else {
+			} else {
 				addActionError("I don't know you, dont try to hack me!");
 			}
 			return INPUT;
-		}	
+		}
 	}
 
 	public String logout() {
@@ -64,5 +58,5 @@ public class LoginController extends ActionSupport implements SessionAware{
 	public String showLogin() {
 		return SUCCESS;
 	}
-	
+
 }

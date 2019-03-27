@@ -28,7 +28,7 @@ public class HibernateUtil {
 
             Map<String, String> settings = new HashMap<>();
             settings.put("hibernate.connection.driver_class", "com.mysql.cj.jdbc.Driver");
-            settings.put("hibernate.connection.url", "jdbc:mysql://localhost:3306/HospitalSystem");
+            settings.put("hibernate.connection.url", "jdbc:mysql://localhost:3306/HospitalSystem?useLegacyDatetimeCode=false&serverTimezone=UTC");
             settings.put("hibernate.connection.username", "root");
             settings.put("hibernate.connection.password", "12345678");
             settings.put("hibernate.show_sql", "true");
@@ -46,6 +46,7 @@ public class HibernateUtil {
             sessionFactory = metadata.getSessionFactoryBuilder().build();
          } catch (Exception e) {
             System.out.println("SessionFactory creation failed");
+            e.printStackTrace();
             if (registry != null) {
                StandardServiceRegistryBuilder.destroy(registry);
             }

@@ -1,13 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib prefix="s" uri="/struts-tags" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <%-- <script type="text/javascript">
 history.forward();
 </script> --%>
-<script type="text/javascript">
+<%-- <script type="text/javascript">
 function Patient(){
 	document.loginForm.action="patientLink.action";
 	document.loginForm.submit();
@@ -31,21 +37,15 @@ function LabReports(){
 function logoutAdmin(){
 	document.loginForm.action="logout.action";
 	document.loginForm.submit();
-}
-</script>
+} --%>
+<%-- </script> --%>
 <meta charset="UTF-8">
 
 
 <title>Insert title here</title>
 </head>
 <body>
-<s:form name="loginForm">
-<input type="button" value="Patient" onclick="Patient()">
-<input type="button" value="Doctors" onclick="Doctor()">
-<input type="button" value="Billing" onclick="Billing()">
-<input type="button" value="Room History" onclick="RoomHistory()">
-<input type="button" value="Labs Reports" onclick="LabReports()">
-<input type="button" value="Logout" onclick="logoutAdmin()">
-</s:form>
+<jsp:include page="navigation.jsp"></jsp:include>
+	<%-- <s:property value="#session.Admin"/>   --%>
 </body>
 </html>

@@ -1,6 +1,14 @@
 window.onload = function(){
 
 	$("#in_patient").hide();
+	
+	$("#isPatientYes").click(function(){
+		$("#in_patient").show();
+	});
+	
+	$("#isPatientNo").click(function(){
+		$("#in_patient").hide();
+	});
 };
 	
 
